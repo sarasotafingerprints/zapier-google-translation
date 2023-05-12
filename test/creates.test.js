@@ -58,3 +58,7 @@ describe('uploadFile', () => {
     expect(result.file.sha1).toBe(EXPECTED_SHA1);
   });
 });
+
+describe('translate_document', () => {
+
+});

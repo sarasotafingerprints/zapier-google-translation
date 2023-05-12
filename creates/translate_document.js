@@ -20,7 +20,6 @@ const perform = async (z, bundle) => {
   };
 
   return z.request(options).then((response) => {
-    //response.throwForStatus();
 
     const results = response.json;
     if (results.error) {
@@ -34,7 +33,7 @@ const perform = async (z, bundle) => {
         throw new z.errors.Error(results.error.message, results.error.code);
       }
     }
-
+    
     //todo: get file contents
     //const content = 'Hello world!';
     //const url = await z.stashFile(content, content.length, 'hello.txt', 'text/plain');

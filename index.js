@@ -1,10 +1,7 @@
 const authentication = require('./authentication');
-const translateDocumentCreate = require('./creates/translate_document.js');
-
+const translateDocumentCreate = require('./creates/translateDocument.js');
 const hydrators = require('./hydrators');
 const newFile = require('./triggers/newFile');
-const uploadFileV10 = require('./creates/uploadFile_v10');
-
 
 module.exports = {
   // This is just shorthand to reference the installed dependencies you have.
@@ -23,7 +20,6 @@ module.exports = {
 
   // If you want your creates to show up, you better include it here!
   creates: {
-    [uploadFileV10.key]: uploadFileV10,
     [translateDocumentCreate.key]: translateDocumentCreate
   },
 };

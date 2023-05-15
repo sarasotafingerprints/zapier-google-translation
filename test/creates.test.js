@@ -14,7 +14,7 @@ const FILE_URL =
 // This is what you get when doing `curl <FILE_URL> | sha1sum`
 const EXPECTED_SHA1 = '3cf58b42a0fb1b7cc58de8110096841ece967530';
 
-describe('uploadFile', () => {
+describe('translateDocument', () => {
   test('upload file v10', async () => {
     if (CORE_VERSION[0] < 10) {
       console.warn(
@@ -36,29 +36,8 @@ describe('uploadFile', () => {
       App.creates.uploadFile_v10.operation.perform,
       bundle
     );
-    expect(result.filename).toBe('sample.pdf');
-    expect(result.file.sha1).toBe(EXPECTED_SHA1);
+    //TODO: write tests
+    //expect(result.filename).toBe('sample.pdf');
+    //expect(result.file.sha1).toBe(EXPECTED_SHA1);
   });
-
-  test('upload file v9', async () => {
-    const bundle = {
-      inputData: {
-        filename: 'sample.pdf',
-
-        // in production, this will be an hydration URL to the selected file's data
-        file: FILE_URL,
-      },
-    };
-
-    const result = await appTester(
-      App.creates.uploadFile_v9.operation.perform,
-      bundle
-    );
-    expect(result.filename).toBe('sample.pdf');
-    expect(result.file.sha1).toBe(EXPECTED_SHA1);
-  });
-});
-
-describe('translate_document', () => {
-
 });

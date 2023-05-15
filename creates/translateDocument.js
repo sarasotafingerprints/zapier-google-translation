@@ -1,8 +1,7 @@
 const http = require('https'); // require('http') if your URL is not https
 //const FormData = require('form-data');
 
-// Getting a stream directly from http. This only works on core 10+. For core
-// 9.x compatible code, see uploadFile_v9.js.
+// Getting a stream directly from http. This only works on core 10+
 const makeDownloadStream = (url) =>
   new Promise((resolve, reject) => {
     http
@@ -67,7 +66,6 @@ const perform = async (z, bundle) => {
     }
   }
 
-  //TODO: get bucket prefix
   //Translate Document Stream and Save Translated File to GS
   const location = 'us-east1-b';
   options = {

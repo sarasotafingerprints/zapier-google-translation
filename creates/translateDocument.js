@@ -139,7 +139,7 @@ module.exports = {
           { sample: 'Spanish', value: 'es', label: 'Spanish' },
         ],
         required: true,
-        list: true,
+        list: false,
         altersDynamicFields: false,
       },
     ],

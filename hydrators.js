@@ -13,4 +13,4 @@ module.exports = {
       // you may skip z.stashFile() and return that URL directly here.
       return z.stashFile(filePromise);
     },
-  };
+};

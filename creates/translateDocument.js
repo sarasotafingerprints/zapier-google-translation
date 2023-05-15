@@ -84,17 +84,17 @@ const perform = async (z, bundle) => {
       uploadType: 'media',
     },
     body: {
-      source_language_code: '',
-      target_language_code:'',
+      target_language_code: bundle.inputData.target_language,
       document_input_config: {
         mimeType: 'application/pdf',
         content: stream
       },
       document_output_config: {
         gcsDestination: {
-          outputUriPrefix:'gs://'
+          outputUriPrefix:`gs://${bundle.authData.project_id}-bucket`
         }
-      }
+      },
+      isTranslateNativePdfOnly: true
     },
   };
   response = await z.request(options);

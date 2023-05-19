@@ -23,6 +23,7 @@ const perform = async (z, bundle) => {
       file: ''
     }]
   }
+  z.console.log("here");
   // bundle.inputData.file will in fact be an URL where the file data can be
   // downloaded from which we do via a stream
   const stream = await makeDownloadStream(bundle.inputData.file, z);

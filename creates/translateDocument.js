@@ -147,9 +147,8 @@ module.exports = {
     ],
     perform: perform,
     sample: {
-      id: 1,
       file: 'SAMPLE FILE',
-      target_language: 'de'
+      error: false
     }
   },
 };

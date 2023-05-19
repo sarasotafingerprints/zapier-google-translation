@@ -1,4 +1,4 @@
-//const http = require('https'); // require('http') if your URL is not https
+const http = require('https'); // require('http') if your URL is not https
 const FormData = require('form-data');
 
 // Getting a stream directly from http. This only works on core 10+

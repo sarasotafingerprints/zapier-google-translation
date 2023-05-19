@@ -20,7 +20,7 @@ const perform = async (z, bundle) => {
   {
     return [{ 
       error: false,
-      file: bundle.inputData.file
+      file: ''
     }]
   }
   // bundle.inputData.file will in fact be an URL where the file data can be

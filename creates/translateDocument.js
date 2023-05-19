@@ -116,12 +116,6 @@ module.exports = {
   },
   operation: {
     inputFields: [
-      {
-        key: 'filename',
-        required: true,
-        type: 'string',
-        label: 'Filename'
-      },
       { 
         key: 'file',
         required: true,
@@ -146,7 +140,6 @@ module.exports = {
     perform: perform,
     sample: {
       id: 1,
-      filename: 'example.pdf',
       file: 'SAMPLE FILE',
       target_language: 'de'
     }

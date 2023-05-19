@@ -40,11 +40,8 @@ const perform = async (z, bundle) => {
   let options;
   let results;
 
-  return { 
-    error: true,
-    file: ''
-  }
-/*
+
+
   //create GS bucket. Ignore 409 error that the bucket is already created.
   options = {
     skipThrowForStatus: true,
@@ -69,6 +66,8 @@ const perform = async (z, bundle) => {
   response  = await z.request(options);
 
   results = response.json;
+  return results;
+  /*
   if (results.error) {
     if (
       results.error.code === 409 &&

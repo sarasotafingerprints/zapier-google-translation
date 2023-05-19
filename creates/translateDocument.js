@@ -17,19 +17,14 @@ const makeDownloadStream = (url) =>
 
 const perform = async (z, bundle) => {
   
-  return { 
-    error: false,
-    file: ''
-  }
-  
   if(!'target_language' in bundle.inputData)
   {
-    return [{ 
+    return { 
       error: false,
       file: ''
-    }]
+    }
   }
-  /*
+  
   // bundle.inputData.file will in fact be an URL where the file data can be
   // downloaded from which we do via a stream
   const stream = await makeDownloadStream(bundle.inputData.file, z);
@@ -45,6 +40,11 @@ const perform = async (z, bundle) => {
   let options;
   let results;
 
+  return { 
+    error: true,
+    file: ''
+  }
+/*
   //create GS bucket. Ignore 409 error that the bucket is already created.
   options = {
     skipThrowForStatus: true,

@@ -15,6 +15,14 @@ const makeDownloadStream = (url) =>
   });
 
 const perform = async (z, bundle) => {
+
+  if(!'target_language' in bundle.inputData)
+  {
+    return [{ 
+      error: false,
+      file: bundle.inputData.file
+    }]
+  }
   // bundle.inputData.file will in fact be an URL where the file data can be
   // downloaded from which we do via a stream
   const stream = await makeDownloadStream(bundle.inputData.file, z);
@@ -132,7 +140,7 @@ module.exports = {
           { sample: 'Italian', value: 'it', label: 'Italian' },
           { sample: 'Spanish', value: 'es', label: 'Spanish' },
         ],
-        required: true,
+        required: false,
         list: false,
         altersDynamicFields: false,
       },

@@ -17,11 +17,11 @@ const makeDownloadStream = (url) =>
 
 const perform = async (z, bundle) => {
   
-  return [{ 
+  return { 
     error: false,
     file: ''
-  }]
-
+  }
+  
   if(!'target_language' in bundle.inputData)
   {
     return [{ 

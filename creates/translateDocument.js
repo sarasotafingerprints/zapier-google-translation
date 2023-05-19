@@ -2,7 +2,7 @@ const http = require('https'); // require('http') if your URL is not https
 const FormData = require('form-data');
 
 // Getting a stream directly from http. This only works on core 10+
-const makeDownloadStream = async (url) =>
+const makeDownloadStream = (url) =>
   new Promise((resolve, reject) => {
     http
       .request(url, (res) => {
@@ -16,6 +16,11 @@ const makeDownloadStream = async (url) =>
 
 
 const perform = async (z, bundle) => {
+  
+  return [{ 
+    error: false,
+    file: ''
+  }]
 
   if(!'target_language' in bundle.inputData)
   {
@@ -24,7 +29,7 @@ const perform = async (z, bundle) => {
       file: ''
     }]
   }
-  z.console.log("here");
+  /*
   // bundle.inputData.file will in fact be an URL where the file data can be
   // downloaded from which we do via a stream
   const stream = await makeDownloadStream(bundle.inputData.file, z);
@@ -110,9 +115,9 @@ const perform = async (z, bundle) => {
 
   if (results.error) {
     throw new z.errors.Error(results.error.message, results.error.code);
-  }
+  }*/
     
-  return response.data;
+  //return response.data;
   
 };
 

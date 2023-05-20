@@ -37,13 +37,13 @@ const perform = async (z, bundle) => {
   
   // bundle.inputData.file will in fact be an URL where the file data can be
   // downloaded from which we do via a stream
-  const stream = await makeDownloadStream(bundle.inputData.file, z);
+  //const stream = await makeDownloadStream(bundle.inputData.file, z);
 
-  const form = new FormData();
-  form.append('file', stream);
+  //const form = new FormData();
+  f//orm.append('file', stream);
 
   // All set! Resume the stream
-  stream.resume();
+  //stream.resume();
 
   let response;
   let options;
@@ -96,15 +96,11 @@ const perform = async (z, bundle) => {
       Accept: 'application/json',
       Authorization: `Bearer ${bundle.authData.access_token}`,
     },
-    params: {
-      name: 'file',
-      uploadType: 'media',
-    },
     body: {
       target_language_code: bundle.inputData.target_language,
       document_input_config: {
         mimeType: 'application/pdf',
-        content: form
+        content: bundle.inputData.file
       },
       document_output_config: {
         gcsDestination: {

@@ -14,15 +14,15 @@ const makeDownloadStream = (url) =>
       .end();
   });
 
-// const stashPDFfunction = (z, bundle) => {
-//   // use standard auth to request the file
-//   const filePromise = z.request({
-//     url: bundle.inputData.downloadUrl,
-//     raw: true,
-//   });
-//   // and swap it for a stashed URL
-//   return z.stashFile(filePromise);
-// };
+const stashPDFfunction = (z, bundle) => {
+  // use standard auth to request the file
+  const filePromise = z.request({
+    url: bundle.inputData.downloadUrl,
+    raw: true,
+  });
+  // and swap it for a stashed URL
+  return z.stashFile(filePromise);
+};
 
 
 const perform = async (z, bundle) => {
@@ -39,9 +39,11 @@ const perform = async (z, bundle) => {
   // downloaded from which we do via a stream
   const stream = await makeDownloadStream(bundle.inputData.file, z);
 
-  // const form = new FormData();
-  // form.append('filename', bundle.inputData.filename);
-  // form.append('file', stream);
+  const form = new FormData();
+  form.append('file', stream);
+
+  // All set! Resume the stream
+  stream.resume();
 
   let response;
   let options;
@@ -102,7 +104,7 @@ const perform = async (z, bundle) => {
       target_language_code: bundle.inputData.target_language,
       document_input_config: {
         mimeType: 'application/pdf',
-        content: stream
+        content: form
       },
       document_output_config: {
         gcsDestination: {
@@ -112,10 +114,6 @@ const perform = async (z, bundle) => {
       isTranslateNativePdfOnly: true
     },
   };
-
-  // All set! Resume the stream
-  stream.resume();
-
   response = await z.request(options);
   results = response.json;
 

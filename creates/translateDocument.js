@@ -1,19 +1,6 @@
 const http = require('https'); // require('http') if your URL is not https
 const FormData = require('form-data');
 
-// Getting a stream directly from http. This only works on core 10+
-const makeDownloadStream = (url) =>
-  new Promise((resolve, reject) => {
-    http
-      .request(url, (res) => {
-        // We can risk missing the first n bytes if we don't pause!
-        res.pause();
-        resolve(res);
-      })
-      .on('error', reject)
-      .end();
-  });
-
 const stashPDFfunction = (z, bundle) => {
   // use standard auth to request the file
   const filePromise = z.request({
@@ -23,7 +10,6 @@ const stashPDFfunction = (z, bundle) => {
   // and swap it for a stashed URL
   return z.stashFile(filePromise);
 };
-
 
 const perform = async (z, bundle) => {
   
@@ -84,7 +70,8 @@ const perform = async (z, bundle) => {
       throw new z.errors.Error(results.error.message, results.error.code);
     }
   }
-
+  z.console.log(bundle.inputData.file);
+  
   //Translate Document Stream and Save Translated File to GS
   const location = 'us-east1-b';
   options = {
@@ -100,7 +87,7 @@ const perform = async (z, bundle) => {
       target_language_code: bundle.inputData.target_language,
       document_input_config: {
         mimeType: 'application/pdf',
-        content: bundle.inputData.file
+        content: "test"
       },
       document_output_config: {
         gcsDestination: {

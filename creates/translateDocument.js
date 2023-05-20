@@ -67,7 +67,7 @@ const perform = async (z, bundle) => {
         'Your previous request to create the named bucket succeeded and you already own it.')
       )
     {
-      throw new z.errors.Error(results.error.message, results.error.code);
+      throw new z.errors.Error(results.error.message, 'Unexpected', results.error.code);
     }
   }
   z.console.log(bundle.inputData.file);
@@ -97,14 +97,15 @@ const perform = async (z, bundle) => {
       isTranslateNativePdfOnly: true
     },
   };
-  response = await z.request(options);
-  results = response.json;
+  //response = await z.request(options);
+  //results = response.json;
 
   // if (results.error) {
   //   throw new z.errors.Error(results.error.message, results.error.code);
   // }
     
-  return response.data;
+  //return response.data;
+  return {test: true};
   
 };
 

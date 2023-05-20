@@ -14,6 +14,16 @@ const makeDownloadStream = (url) =>
       .end();
   });
 
+// const stashPDFfunction = (z, bundle) => {
+//   // use standard auth to request the file
+//   const filePromise = z.request({
+//     url: bundle.inputData.downloadUrl,
+//     raw: true,
+//   });
+//   // and swap it for a stashed URL
+//   return z.stashFile(filePromise);
+// };
+
 
 const perform = async (z, bundle) => {
   
@@ -33,14 +43,9 @@ const perform = async (z, bundle) => {
   // form.append('filename', bundle.inputData.filename);
   // form.append('file', stream);
 
-  // All set! Resume the stream
-  stream.resume();
-
   let response;
   let options;
   let results;
-
-
 
   //create GS bucket. Ignore 409 error that the bucket is already created.
   options = {
@@ -66,16 +71,14 @@ const perform = async (z, bundle) => {
   response  = await z.request(options);
 
   results = response.json;
-  return results;
-  /*
+  
   if (results.error) {
     if (
-      results.error.code === 409 &&
+      !(results.error.code === 409 &&
       results.error.message ===
-        'Your previous request to create the named bucket succeeded and you already own it.'
-    ) {
-      response.skipThrowForStatus = true; //V10 only
-    } else {
+        'Your previous request to create the named bucket succeeded and you already own it.')
+      )
+    {
       throw new z.errors.Error(results.error.message, results.error.code);
     }
   }
@@ -109,14 +112,18 @@ const perform = async (z, bundle) => {
       isTranslateNativePdfOnly: true
     },
   };
+
+  // All set! Resume the stream
+  stream.resume();
+
   response = await z.request(options);
   results = response.json;
 
   if (results.error) {
     throw new z.errors.Error(results.error.message, results.error.code);
-  }*/
+  }
     
-  //return response.data;
+  return response.data;
   
 };
 

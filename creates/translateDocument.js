@@ -26,7 +26,7 @@ const perform = async (z, bundle) => {
   //const stream = await makeDownloadStream(bundle.inputData.file, z);
 
   //const form = new FormData();
-  f//orm.append('file', stream);
+  //form.append('file', stream);
 
   // All set! Resume the stream
   //stream.resume();
@@ -70,8 +70,7 @@ const perform = async (z, bundle) => {
       throw new z.errors.Error(results.error.message, results.error.code);
     }
   }
-  z.console.log(bundle.inputData.file);
-  
+
   //Translate Document Stream and Save Translated File to GS
   const location = 'us-east1-b';
   options = {
@@ -87,7 +86,7 @@ const perform = async (z, bundle) => {
       target_language_code: bundle.inputData.target_language,
       document_input_config: {
         mimeType: 'application/pdf',
-        content: "test"
+        content: bundle.inputData.file
       },
       document_output_config: {
         gcsDestination: {

@@ -70,6 +70,7 @@ const perform = async (z, bundle) => {
       throw new z.errors.Error(results.error.message, results.error.code);
     }
   }
+  z.console.log(bundle.inputData.file);
 
   //Translate Document Stream and Save Translated File to GS
   const location = 'us-east1-b';
@@ -99,9 +100,9 @@ const perform = async (z, bundle) => {
   response = await z.request(options);
   results = response.json;
 
-  if (results.error) {
-    throw new z.errors.Error(results.error.message, results.error.code);
-  }
+  // if (results.error) {
+  //   throw new z.errors.Error(results.error.message, results.error.code);
+  // }
     
   return response.data;
   
